@@ -5,7 +5,7 @@
 
 # node_modules is a storage folder for Node and
 # can get very large.
-node_modules
+node_modules/
 
 # .env file is for local use only. It contains
 # values not to be shared and most of the values
