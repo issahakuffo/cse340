@@ -21,8 +21,7 @@
 .siteName a{
   color: rgb(53, 47, 178);
   text-decoration: none;
-  font-size: 1rem;
-  font-size: 4rem;
+  font-size: 1.5rem;
 }
 
 #tools a{
@@ -56,8 +55,8 @@ nav ul{
 .hero-text{
   position: absolute;
   padding: 10px;
-  top: 40%;
-  right: 8%;
+  top: 35%;
+  right: 10%;
   text-align: center;
   font-family: "PT Serif", serif;
   z-index: 1;
@@ -67,8 +66,8 @@ nav ul{
   font-size: 3rem;
   position: absolute;
   padding: 15px;
-  top: 30%;
-  right: 0%;
+  top: 20%;
+  right: 3%;
 }
 
 .intro-msg{
@@ -111,6 +110,11 @@ nav ul{
   color: black;
 }
 
+.main-grid{
+  background-color: #fff;
+
+}
+
 
 .reviews{
   display: block;
@@ -118,6 +122,10 @@ nav ul{
   background-color: white;
   color: black;
   
+}
+
+.copyright{
+  background-color: #fff;
 }
 
 .reviews ul li, #upgrade figcaption{
@@ -171,7 +179,7 @@ figcaption{
   .hero-text {
     font-size: 1rem;
     padding: 1px;
-    bottom: 35%; 
+    bottom: 30%; 
     left: 0%; 
     width: 250px;
     
@@ -179,7 +187,7 @@ figcaption{
 
   .welcome-msg h1 {
     font-size: 2rem;
-    top: 27%; 
+    top: 23%; 
     left: 0%;
   }
 
@@ -208,8 +216,6 @@ figcaption{
     margin-bottom: 0.5rem;
   }
   
-
-  
 }
 
 @media (min-width: 648px){
@@ -230,7 +236,93 @@ figcaption{
     grid-row: 1/2;
    
   }
-
+  body{
+    background-image: url(/images/site/checkerboard.jpg);
+  }
   
+  #wrapper{
+    margin: 50px;
+    border: 10px solid rgb(0, 255, 136) ;
+    border-radius: 15px;
+  }
+  
+  
+.siteName a{
+  color: rgb(53, 47, 178);
+  text-decoration: none;
+  font-size: 3rem;
+}
+
+#tools a{
+  color: rgb(53, 47, 178);
+  text-decoration: none;
+  font-size: 1.5rem;
+}
+
+.hero img{
+  position: relative;
+  width: 100%;
+  height: auto;
+  z-index: -1;
+}
+
+.hero-text{
+  position: absolute;
+  padding: 10px;
+  top: 45%;
+  right: 10%;
+  text-align: center;
+  font-family: "PT Serif", serif;
+  z-index: 1;
+}
+
+.welcome-msg h1{
+  font-size: 3rem;
+  position: absolute;
+  padding: 15px;
+  top: 35%;
+  right: 3%;
+}
+
+.intro-msg{
+  background: rgba(255, 255, 255, 0.3);
+  color: rgb(8, 8, 8);
+  margin: 4px;
+  padding: 1rem;
+  border-radius: 15px;
+}
+
+.intro-msg h3{
+  font-size: 2rem;
+  padding: 0.5rem;
+  font-family: "Playpen Sans", cursive;
+}
+
+
+.intro-msg ul li{
+  list-style: none;
+  text-align: center;
+  padding: 0.2rem;
+}
+
+.intro-msg ul{
+  margin-bottom: 1.5rem;
+}
+
+.primary-btn{
+  background-color: black;
+  color: #fff;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.primary-btn:hover {
+  background-color: lightgrey;
+  color: black;
+}
+
   
 }
