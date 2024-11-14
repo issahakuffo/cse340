@@ -2,5 +2,233 @@
 *,
 *:before,
 *:after {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
+}
+
+#top-header{
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  color: #fff;
+  font-family: "Playpen Sans", cursive;
+  height: 160px;
+}
+
+.siteName a{
+  color: rgb(53, 47, 178);
+  text-decoration: none;
+  font-size: 1rem;
+  padding-right: auto;
+  font-size: 4rem;
+}
+
+#tools a{
+  columns: rgb(53, 47, 178);
+  text-decoration: none;
+  font-size: 1rem;
+}
+ 
+nav{
+  background-color: black;
+  color: white;
+  font-family: "Playpen Sans", cursive;
+  font-size: 1rem;
+}
+nav ul{
+  display: flex;
+  justify-content: space-around;
+  padding: 15px;
+  align-items: center;
+  list-style: none;
+}
+
+
+.hero img{
+  position: relative;
+  width: 100%;
+  height: auto;
+  z-index: -1;
+}
+
+.hero-text{
+  position: absolute;
+  padding: 10px;
+  top: 40%;
+  right: 8%;
+  text-align: center;
+  font-family: "PT Serif", serif;
+  z-index: 1;
+}
+
+.welcome-msg h1{
+  font-size: 3rem;
+  position: absolute;
+  padding: 15px;
+  top: 30%;
+  right: 0%;
+}
+
+.intro-msg{
+  background: rgba(255, 255, 255, 0.3);
+  color: rgb(8, 8, 8);
+  margin: 4px;
+  padding: 1rem;
+  border-radius: 15px;
+}
+
+.intro-msg h3{
+  font-size: 2rem;
+  padding: 0.5rem;
+  font-family: "Playpen Sans", cursive;
+}
+
+
+.intro-msg ul li{
+  list-style: none;
+  text-align: center;
+  padding: 0.2rem;
+}
+
+.intro-msg ul{
+  margin-bottom: 1.5rem;
+}
+
+.primary-btn{
+  background-color: black;
+  color: #fff;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.primary-btn:hover {
+  background-color: lightgrey;
+  color: black;
+}
+
+
+.reviews{
+  display: block;
+  text-align: center;
+  background-color: white;
+  color: black;
+  
+}
+
+.reviews ul li, #upgrade figcaption{
+  font-size: 1.3rem;
+  padding: 1rem;
+  font-family: "PT Serif", serif;
+  list-style: none;
+}
+
+.reviews h2, 
+.main-update h2{
+  font-family: "Playpen Sans", cursive;
+  text-align: center;
+  padding: 2rem;
+}
+
+.upgrade-item{
+  background-color: lightgrey;
+  align-items: center;
+  padding: 1rem;
+  width: 300px;
+  height: 120px;
+  
+}
+
+figcaption{
+  text-decoration: underline;
+  text-align: center;
+  color: black;
+  font-size: 1.5rem;
+}
+
+#upgrade {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.upgrade-con{
+  text-align: center;
+}
+
+
+
+@media (max-width: 600px) {
+  .hero-text {
+    font-size: 1rem;
+    padding: 1px;
+    bottom: 35%; 
+    left: 0%; 
+    width: 250px;
+    
+  }
+
+  .welcome-msg h1 {
+    font-size: 2rem;
+    top: 27%; 
+    left: 0%;
+  }
+
+  .intro-msg{
+    background: rgba(255, 255, 255, 0.5);
+    color: black;
+    margin: 1px;
+    padding: 1rem;
+    border-radius: 15px;
+    font-weight: bold;
+  }
+  
+  .intro-msg h3{
+    font-size: 2rem;
+    padding: 0.5rem;
+    font-family: "Playpen Sans", cursive;
+  }
+
+  .primary-btn{
+    background-color:  rgb(86, 235, 124);
+    color: black;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+
+  
+}
+
+@media (min-width: 648px){
+
+ .main-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+  }
+
+  .reviews{
+    grid-column: 2/3;
+    grid-row: 1/2;
+  }
+
+  #upgrade{
+    grid-column: 1/2;
+    grid-row: 1/2;
+   
+  }
+
+  
+  
 }
