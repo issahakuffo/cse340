@@ -22,14 +22,13 @@
   color: rgb(53, 47, 178);
   text-decoration: none;
   font-size: 1rem;
-  padding-right: auto;
   font-size: 4rem;
 }
 
 #tools a{
-  columns: rgb(53, 47, 178);
+  color: rgb(53, 47, 178);
   text-decoration: none;
-  font-size: 1rem;
+  font-size: 1.5rem;
 }
  
 nav{
