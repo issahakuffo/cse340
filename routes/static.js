@@ -12,9 +12,9 @@ router.use(express.static("views"));
 router.use("/partials", express.static(__dirname + "views/partials"));
 
 // Define the index route
-router.get('/', (req, res) => {
-    res.render('index'); // Render the EJS template located in the views folder
-});
+// router.get('/', (req, res) => {
+//     res.render('index'); // Render the EJS template located in the views folder
+// });
 
 module.exports = router;
 
