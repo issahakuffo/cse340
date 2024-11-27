@@ -1,0 +1,36 @@
+<div class="vehicle-detail">
+    <div>
+        <h1><%- vehicle.inv_make %> <%- vehicle.inv_model %></h1>
+    </div>
+
+    <div class="vehicle-container">
+        <!-- Vehicle Image -->
+        <div id="vehicle-image">
+            <img src="<%- vehicle.inv_image %>" alt="<%- vehicle.inv_make %> <%- vehicle.inv_model %> full-size image">
+        </div> <!-- Close the vehicle image div -->
+
+        <!-- Vehicle Details -->
+        <div class="info-container">
+            <div class="vehicle-info">
+                <p><strong>Make:</strong> <%- vehicle.inv_make %></p>
+                <p><strong>Model:</strong> <%- vehicle.inv_model %></p>
+                <p><strong>Year:</strong> <%- vehicle.inv_year %></p>
+                <p><strong>Price:</strong> $<%- new Intl.NumberFormat('en-US').format(vehicle.inv_price) %></p>
+                <p><strong>Mileage:</strong> <%- new Intl.NumberFormat('en-US').format(vehicle.inv_miles) %> miles</p>
+                <p><strong>Color:</strong> <%- vehicle.inv_color %></p>
+                <p><strong>Description:</strong> <%- vehicle.inv_description %></p>
+            </div>  
+
+            <div class="more-info">
+                <a href="#" class="primary-btn">START MY PURCHASE</a>
+                <a href="#" class="primary-btn">CONTACT US</a>
+                <a href="#" class="primary-btn">SCHEDULE FOR TEST DRIVE</a>
+                <a href="#" class="primary-btn">APPLY FOR FINANCING</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="back-link">
+        <a href="/inv/type/<%- vehicle.classification_id %>">Back to Vehicle Listings</a>
+    </div>
+</div>

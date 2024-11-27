@@ -89,7 +89,20 @@ nav ul{
   padding: 0.5rem;
   font-family: "Playpen Sans", cursive;
 }
+ #inv-display{
+  background-color: white;
+  margin-top: -40px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+  margin-top: -70px;
+ }
 
+ #inv-display li{
+  margin-top: 70px;
+  margin-left: 30px;
+  list-style: none;
+ }
 
 .intro-msg ul li{
   list-style: none;

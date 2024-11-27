@@ -57,6 +57,46 @@ Util.buildClassificationGrid = async function(data){
   return grid
 }
 
+/* ***************************************
+ * Build the vehicle details HTML view
+ *************************************** */
+Util.buildVehicleDetailHTML = function (vehicle) {
+  let vehicleHTML = "<div class='vehicle-details'>";
+
+  vehicleHTML += "<h1>" + vehicle.inv_make + " " + vehicle.inv_model + "</h1>";
+  vehicleHTML += "<h3>Price: $" + new Intl.NumberFormat("en-US").format(vehicle.inv_price) + "</h3>";
+  vehicleHTML += "<p><strong>Year:</strong> " + vehicle.inv_year + "</p>";
+  vehicleHTML += "<p><strong>Color:</strong> " + vehicle.inv_color + "</p>";
+  vehicleHTML += "<p><strong>Mileage:</strong> " + new Intl.NumberFormat("en-US").format(vehicle.inv_miles) + " miles</p>";
+  vehicleHTML += "<p><strong>Stock Number:</strong> " + vehicle.inv_stock + "</p>";
+  vehicleHTML += "<p><strong>Location:</strong> " + vehicle.inv_location + "</p>";
+
+  // Display description if available
+  if (vehicle.inv_description) {
+    vehicleHTML += "<p><strong>Description:</strong> " + vehicle.inv_description + "</p>";
+  }
+
+  // Display the vehicle thumbnail image
+  vehicleHTML +=
+    "<img src='" +
+    vehicle.inv_image +
+    "' alt='Image of " +
+    vehicle.inv_make +
+    " " +
+    vehicle.inv_model +
+    "' />";
+
+  // Add a link to navigate back to the listing of vehicles
+  vehicleHTML +=
+    "<p><a href='/inv/type/" +
+    vehicle.classification_id +
+    "'>Back to vehicle listing</a></p>";
+
+  vehicleHTML += "</div>"; // Close the vehicle details div
+
+  return vehicleHTML;
+};
+
 /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for 
