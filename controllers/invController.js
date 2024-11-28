@@ -48,13 +48,13 @@ invCont.getInventoryDetail = async function (req, res, next) {
         nav,
         message: "The vehicle you are looking for does not exist.",
       
-      });
+      })
     }
   } catch (err) {
     console.error("Error in getInventoryDetail:", err);
     next(err); // Pass the error to Express's error handler
   }
-};
+}
 
 
 module.exports = invCont

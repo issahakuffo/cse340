@@ -40,7 +40,7 @@ async function getVehicleById(inv_id) {
     console.log(data.rows)
     return data.rows[0]
   } catch (error) {
-    console.error("Error in getVehicleById:", error);
+    console.error("Error in getVehicleById:", error)
   }
 }
 
