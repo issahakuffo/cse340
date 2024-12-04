@@ -1,0 +1,43 @@
+<div  class="form-container">
+    <div class="register-text">
+        <h1>Register</h1>
+    </div>
+    <div class="form-info">
+        <form action="/account/register" method="POST">
+            <label for="account_firstname">First Name:</label>
+            <input type="text" id="account_firstname" name="account_firstname" required>
+            
+            <label for="account_lastname">Last Name:</label>
+            <input type="text" id="account_lastname" name="account_lastname" required>
+            
+            <label for="account_email">Email Address:</label>
+            <input type="email" id="account_email" name="account_email" required>
+            
+            <label for="account_password">Password:</label>
+            <input type="password" id="account_password" name="account_password" required>
+            <small>Password must be at least 12 characters, include a capital letter, a number, and a special character.</small>
+            
+            <div class="show_password">
+                <button type="button" id="togglePassword">Show Password</button>
+            </div>
+            <!-- Submit Button -->
+            <button type="submit">Register</button>
+        </form>
+        <p>Already have an account? <a href="/account/login">Login here</a></p>
+    </div>  
+</div>
+<script>
+    const togglePassword = document.querySelector("#togglePassword");
+    togglePassword.addEventListener("click", function () {
+        const account_passwordInput = document.getElementById("account_password");
+        const type = account_passwordInput.getAttribute("type");
+        
+        if (type == "password") { // Corrected type comparison
+            account_passwordInput.setAttribute("type", "text");
+            togglePassword.innerHTML = "Hide Password"; // Update button text
+        } else {
+            account_passwordInput.setAttribute("type", "password"); // Ensure lowercase "password"
+            togglePassword.innerHTML = "Show Password";
+        }
+    });
+</script>

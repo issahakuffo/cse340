@@ -115,22 +115,22 @@ margin-top: -10px;
 
 /* Responsive Design for Small Screens */
 @media (max-width: 768px) {
-.vehicle-container {
-    flex-direction: column;
-}
-
-#vehicle-image,
-.vehicle-info {
-    max-width: 100%;
-}
-
-.info-container{
-    display: block;
-    border: 1px solid black;
-    border-radius: 25px;
-    font-family: "PT Serif", serif;
-    text-align: center;
+    .vehicle-container {
+        flex-direction: column;
     }
+
+    #vehicle-image,
+    .vehicle-info {
+        max-width: 100%;
+    }
+
+    .info-container{
+        display: block;
+        border: 1px solid black;
+        border-radius: 25px;
+        font-family: "PT Serif", serif;
+        text-align: center;
+        }
 
 }   
 

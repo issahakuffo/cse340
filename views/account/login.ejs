@@ -1,0 +1,18 @@
+<div class="form-container">
+    <div class="login-text">
+        <h1>Login</h1>
+        <%- messages() %>
+    </div>
+    <div class="form-info">
+        <form action="/account/login" method="POST">
+            <label for="account_email">Email:</label>
+            <input type="email" id="account_email" name="account_email" required>
+            
+            <label for="account_password">Password:</label>
+            <input type="password" id="account_password" name="account_password" required>
+            
+            <button type="submit">Login</button>
+        </form>
+        <p>Don't have an account? <a href="/account/register">Register here</a></p>
+    </div>
+</div>

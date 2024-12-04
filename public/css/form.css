@@ -1,0 +1,83 @@
+.form-container{
+    background-color: white;
+    margin-top: -10px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+.login-text,.register-text{
+    padding-bottom: 15px;
+    color: rgb(22, 227, 22);
+}
+.login-text, .register-text h1{
+    color: black;
+}
+
+.form-info{
+    border:1px solid gray;
+    padding: 8px;
+    width: 350px;
+    border-radius: 25px;
+    box-shadow: 1px 1px 6px #6b6a6a;
+}
+
+label{
+    display: block;
+    padding: 3px;
+}
+
+input{
+    width: 300px;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 25px;
+    border: 1px solid #ccc;
+    display: block;
+    background-color: lightgrey;
+    box-shadow: 1px 1px 6px #6b6a6a;
+}
+
+#togglePassword{
+    display: block;
+    padding: 7px;
+    border-radius: 25px;
+    width: 200px;
+    background-color: lightgrey;
+}
+#togglePassword:hover{
+    background-color: black;
+    color: white;
+}
+
+.show_password{
+    padding: 8px;
+}
+
+button{
+    display: block;
+    padding: 8px;
+    border-radius: 25px;
+    width: 100px;
+    background-color: lightgrey;
+
+}
+
+button:hover{
+    background-color: black;
+    color: white;
+}
+
+.form-info a:hover{
+    color: red;
+}
+ 
+footer{
+    margin-top: -20px;
+    padding-top: 20px;
+}
+
+
+
+/* Responsive Design for Small Screens */
+@media (max-width: 768px) {
+}

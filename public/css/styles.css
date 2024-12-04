@@ -61,19 +61,24 @@ nav ul{
 .hero-text{
   position: absolute;
   padding: 10px;
-  top: 45%;
+  top: 21%;
   right: 10%;
   text-align: center;
   font-family: "PT Serif", serif;
   z-index: 1;
 }
 
-.welcome-msg h1{
-  font-size: 3rem;
+div.welcome-msg{
+  font-size: 1rem;
   position: absolute;
   padding: 15px;
-  top: 20%;
+  top: 13%;
   right: 3%;
+  color: red;
+}
+
+.welcome-msg h1{
+  color: black;
 }
 
 .intro-msg{
@@ -288,19 +293,23 @@ figcaption{
   .hero-text{
     position: absolute;
     padding: 10px;
-    top: 45%;
-    right: 10%;
+    top: 50%;
+    right: 8%;
     text-align: center;
     font-family: "PT Serif", serif;
     z-index: 1;
   }
 
-  .welcome-msg h1{
-    font-size: 3rem;
+  div.welcome-msg{
+    font-size: 1.5rem;
     position: absolute;
     padding: 15px;
-    top: 35%;
-    right: 3%;
+    top: 32%;
+    right: 4%;
+    color: red;
+  }
+  .welcome-msg h1{
+    color: black;
   }
 
   .intro-msg{
