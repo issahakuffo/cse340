@@ -16,8 +16,10 @@ const utilities = require("./utilities/")
 const errorRoutes = require("./routes/errorRoutes")
 const session = require("express-session")
 const pool = require('./database/')
-const accountController = require("./controllers/accountController")
+const accountRoute = require("./routes/accountRoute")
 const bodyParser = require("body-parser")
+
+
 
 
 

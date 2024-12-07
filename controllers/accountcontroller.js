@@ -1,6 +1,8 @@
 // Account Controller
 const utilities = require("../utilities/")
 const accountModel =  require("../models/account-model")
+require("dotenv").config();
+
 
 /* ****************************************
 *  Deliver login view
