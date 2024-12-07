@@ -1,7 +1,27 @@
 const invModel = require("../models/inventory-model")
 const utilities = require("../utilities/")
+const { validationResult } = require("express-validator")
 
 const invCont = {}
+
+/* ***************************
+ *  Build Inventory Management View
+ * *************************** */
+invCont.buildManagement = async function (req, res, next) {
+  try {
+    let nav = await utilities.getNav();
+    const classificationOptions = await utilities.getClassifications();  
+
+    res.render("inventory/management", {
+      title: "Inventory Management",
+      nav,
+      flashMessage: req.flash("notice") || null,  // Display flash messages if any
+      classificationOptions, 
+    });
+  } catch (err) {
+    next(err);
+  }
+}
 
 /* ***************************
  *  Build inventory by classification view

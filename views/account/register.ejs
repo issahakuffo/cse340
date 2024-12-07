@@ -1,7 +1,17 @@
+  
 <div  class="form-container">
     <div class="register-text">
         <h1>Register</h1>
-        <%- message() %>
+        
+        <%- messages() %>
+
+        <% if (errors) { %>
+            <ul class="notice">
+           <% errors.array().forEach(error => { %>
+             <li><%= error.msg %></li>
+          <%  }) %>
+           </ul>
+          <% } %>
     </div>
     <div class="form-info">
         <form action="/account/register" method="POST">
@@ -15,9 +25,18 @@
             <input type="email" id="account_email" name="account_email" required>
             
             <label for="account_password">Password:</label>
-            <input type="password" id="account_password" name="account_password" required>
-            <small>Password must be at least 12 characters, include a capital letter, a number, and a special character.</small>
-            
+            <input type="password" id="account_password" name="account_password" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
+            <small> Password must be at least 12 characters, include a capital letter, a number, and a special character.</small>
+            <div class="password-requirements">
+                <p>Password Requirements:</p>
+                <ul>
+                    <li>At least 12 characters</li>
+                    <li>At least one uppercase letter</li>
+                    <li>At least one lowercase letter</li>
+                    <li>At least one number</li>
+                    <li>At least one special character</li>
+                </ul>
+            </div>
             <div class="show_password">
                 <button type="button" id="togglePassword">Show Password</button>
             </div>

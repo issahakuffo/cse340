@@ -5,14 +5,16 @@
     display: flex;
     flex-direction: column;
 }
+
 .login-text{
     padding-bottom: 15px;
     
 }
 
 .notice{
-    color: rgb(6, 148, 6);
+    color: rgb(224, 59, 38);
     list-style: none;
+    padding: 2px;
 }
 
 .login-text, .register-text h1{
@@ -41,6 +43,25 @@ input{
     display: block;
     background-color: lightgrey;
     box-shadow: 1px 1px 6px #6b6a6a;
+}
+
+.password-requirements{
+    display: block;
+    padding: 5px;
+    border: 1px solid gray;
+    font-size: 0.8rem;
+    border-radius: 25px;
+    margin: 5px;
+    box-shadow: 1px 1px 6px #6b6a6a;
+}
+
+.password-requirements p{
+    font-weight: bold;
+}
+
+.password-requirements li{
+    list-style: none;
+    color: blue;
 }
 
 #togglePassword{
@@ -86,4 +107,12 @@ footer{
 
 /* Responsive Design for Small Screens */
 @media (max-width: 768px) {
+    .form-container{
+        background-color: white;
+        margin-top: -10px;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
 }
