@@ -5,10 +5,35 @@
             <% } else {
               res.redirect('/')
             } %>
-        <%- Messages() %>
+        
+        <!-- Flash Message -->
+        <% if (flashMessage) { %>
+            <div class="alert alert-success"><%= flashMessage %></div>
+        <% } %>
     </div>
     <div class="management-links">
         <a href="/inv/add-classification">Add New Classification</a>
         <a href="/inv/add-inventory">Add New Vehicle</a>
     </div>
+
+
+    <h2>Manage Inventory</h2>
+
+    <!-- Dropdown for selecting classification -->
+    <form>
+    <label for="classificationList">Choose a classification:</label>
+    <select id="classificationList" name="classificationList">
+        <option value="">Select Classification</option>
+        <% classificationOptions.forEach(function(option) { %>
+        <option value="<%= option.classification_id %>"><%= option.classification_name %></option>
+        <% }); %>
+    </select>
+    </form>
+
+    <!-- Table for displaying inventory items -->
+    <table id="inventoryDisplay"></table>
+
+    <noscript>JavaScript must be enabled to use this page.</noscript>
+
+    <script src="/../../js/inventory.js"></script>
 </div>

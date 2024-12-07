@@ -24,6 +24,19 @@ Util.getNav = async function (req, res, next) {
   return list
 }
 
+/* *******************************
+ * Get Classifications from DB
+ ******************************* */
+Util.getClassifications = async function () {
+  try {
+    const result = await invModel.getClassifications();  // Query the classifications from the database
+    return result.rows;  // Return the rows of classification data
+  } catch (error) {
+    console.error("Error fetching classifications:", error);
+    throw new Error("Unable to fetch classifications");
+  }
+};
+
 /* **************************************
 * Build the classification view HTML
 * ************************************ */

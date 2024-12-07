@@ -103,6 +103,46 @@ footer{
     padding-top: 20px;
 }
 
+ /*management view */
+ .management-container,.classification-container, .add-inv-container{
+    background-color: white;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+ }
+
+ .add-class{
+    padding: 10px;
+ }
+.add-class button{
+    display: block;
+    padding: 8px;
+    border-radius: 25px;
+    width: 200px;
+    background-color: lightgrey;
+}
+.add-class button:hover{
+    background-color: black;
+    color: white;
+}
+
+.management-container a{
+    display: block;
+    padding: 5px;
+    color: blue;
+    font-size: bold;
+    text-align: left;
+}
+
+.management-container a:hover{
+   color: red;
+   font-size: 1.2rem;
+}
+
+.management-container{
+    padding: 10px;
+    text-align: center;
+}
 
 
 /* Responsive Design for Small Screens */
@@ -115,4 +155,12 @@ footer{
         flex-direction: column;
         width: 100%;
     }
+
+    .management-container,.classification-container, .add-inv-container{
+        background-color: white;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+     }
 }
