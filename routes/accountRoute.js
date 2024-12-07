@@ -5,7 +5,7 @@
 
 const express = require("express");
 const router = express.Router();
-const accountController = require("../controllers/accountController");
+const accountController = require("../controllers/accountController")
 const utilities = require("../utilities");
 const regValidate = require("../utilities/account-validation");
 
