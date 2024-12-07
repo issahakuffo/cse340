@@ -1,28 +1,39 @@
 /*************************************
- * Account routes 
- * Unit 4, deliver Login view activity
+ * Account Routes
+ * Unit 4 - Deliver Login and Registration Views
  *************************************/
 
-const express = require("express")
-const router = express.Router()
-const accountController = require("../controllers/accountController")
-const utilities = require("../utilities")
-const regValidate = require("../utilities/account-validation")
+const express = require("express");
+const router = express.Router();
+const accountController = require("../controllers/accountController");
+const utilities = require("../utilities");
+const regValidate = require("../utilities/account-validation");
 
 /*********************
- * Deliver login view
+ * Deliver Login View
  *********************/
-
-router.get("/login",utilities.handleErrors(accountController.buildLogin))
+router.get(
+  "/login",
+  utilities.handleErrors(accountController.buildLogin)
+);
 
 /*********************
- * Deliver registration view
+ * Deliver Registration View
  *********************/
+router.get(
+  "/register",
+  utilities.handleErrors(accountController.buildRegister)
+);
 
-router.get("/register",utilities.handleErrors(accountController.buildRegister))
-
-router.post('/register',  regValidate.registationRules(), regValidate.checkRegData, utilities.handleErrors(accountController.registerAccount))
-
+/*********************
+ * Handle Registration Form Submission
+ *********************/
+router.post(
+  "/register",
+  regValidate.registationRules(), // Validation rules middleware
+  regValidate.checkRegData,       // Check validation results
+  utilities.handleErrors(accountController.registerAccount) // Handle registration
+);
 
 // Export the router
 module.exports = router;
