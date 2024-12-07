@@ -1,0 +1,14 @@
+<div class="management-container">
+    <div class="management-text">
+        <% if (title) { %>
+            <h1><%= title %></h1>
+            <% } else {
+              res.redirect('/')
+            } %>
+        <%- Messages() %>
+    </div>
+    <div class="management-links">
+        <a href="/inv/add-classification">Add New Classification</a>
+        <a href="/inv/add-inventory">Add New Vehicle</a>
+    </div>
+</div>
