@@ -104,7 +104,14 @@ footer{
 }
 
  /*management view */
- .management-container,.classification-container, .add-inv-container{
+ .management-container,
+ .classification-container, 
+ .add-inv-container,
+ .manage-container,
+ .update-container,
+ .delete-container,
+ .edit-inv-container
+ {
     background-color: white;
     align-items: center;
     display: flex;

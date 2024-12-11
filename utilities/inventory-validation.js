@@ -1,7 +1,7 @@
-const { body, validationResult } = require("express-validator");
-const utilities = require("../utilities");
+const { body, validationResult } = require("express-validator")
+const utilities = require("../utilities")
 
-const validateInventory = {};
+const validateInventory = {}
 
 /* **************************************
  * Inventory Data Validation Rules
@@ -26,8 +26,8 @@ validateInventory.inventoryValidationRules = () => {
       .notEmpty()
       .withMessage("Mileage is required."),
     body("inv_color").trim().notEmpty().withMessage("Color is required."),
-  ];
-};
+  ]
+}
 
 /* **************************************
  * Check Inventory Data (For Adding Inventory)
@@ -44,12 +44,12 @@ validateInventory.checkInventoryData = async (req, res, next) => {
     inv_thumbnail,
     inv_miles,
     inv_color,
-  } = req.body;
+  } = req.body
 
-  let errors = validationResult(req);
+  let errors = validationResult(req)
   if (!errors.isEmpty()) {
-    let nav = await utilities.getNav();
-    let classificationOptions = await utilities.getClassifications();
+    let nav = await utilities.getNav()
+    let classificationOptions = await utilities.getClassifications()
 
     res.render("inventory/add-inventory", {
       errors: errors.array(),
@@ -67,10 +67,10 @@ validateInventory.checkInventoryData = async (req, res, next) => {
       inv_miles,
       inv_color,
     });
-    return;
+    return
   }
-  next();
-};
+  next()
+}
 
 /* **************************************
  * Check Update Inventory Data
@@ -88,12 +88,12 @@ validateInventory.checkUpdateData = async (req, res, next) => {
     inv_price,
     inv_miles,
     inv_color,
-  } = req.body;
+  } = req.body
 
-  let errors = validationResult(req);
+  let errors = validationResult(req)
   if (!errors.isEmpty()) {
     let nav = await utilities.getNav();
-    let classificationOptions = await utilities.getClassifications();
+    let classificationOptions = await utilities.getClassifications()
 
     res.render("inventory/edit-inventory", {
       errors: errors.array(),
@@ -111,10 +111,10 @@ validateInventory.checkUpdateData = async (req, res, next) => {
       inv_price,
       inv_miles,
       inv_color,
-    });
-    return;
+    })
+    return
   }
-  next();
-};
+  next()
+}
 
 module.exports = validateInventory;

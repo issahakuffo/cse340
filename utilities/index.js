@@ -1,4 +1,8 @@
+const jwt = require("jsonwebtoken")
+require("dotenv").config()
 const invModel = require("../models/inventory-model")
+const accountModel = require("../models/account-model")
+const { validationResult } = require("express-validator")
 const Util = {}
 
 /* ************************
@@ -29,13 +33,13 @@ Util.getNav = async function (req, res, next) {
  ******************************* */
 Util.getClassifications = async function () {
   try {
-    const result = await invModel.getClassifications();  // Query the classifications from the database
-    return result.rows;  // Return the rows of classification data
+    const result = await invModel.getClassifications()  // Query the classifications from the database
+    return result.rows  // Return the rows of classification data
   } catch (error) {
-    console.error("Error fetching classifications:", error);
-    throw new Error("Unable to fetch classifications");
+    console.error("Error fetching classifications:", error)
+    throw new Error("Unable to fetch classifications")
   }
-};
+}
 
 /* **************************************
 * Build the classification view HTML
@@ -103,12 +107,12 @@ Util.buildVehicleDetailHTML = function (vehicle) {
   vehicleHTML +=
     "<p><a href='/inv/type/" +
     vehicle.classification_id +
-    "'>Back to vehicle listing</a></p>";
+    "'>Back to vehicle listing</a></p>"
 
   vehicleHTML += "</div>"; // Close the vehicle details div
 
   return vehicleHTML;
-};
+}
 
 /* ****************************************
  * Middleware For Handling Errors
@@ -117,4 +121,41 @@ Util.buildVehicleDetailHTML = function (vehicle) {
  **************************************** */
 Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next)
 
+/* ****************************************
+* Middleware to check token validity
+**************************************** */
+Util.checkJWTToken = (req, res, next) => {
+  if (req.cookies.jwt) {
+   jwt.verify(
+    req.cookies.jwt,
+    process.env.ACCESS_TOKEN_SECRET,
+    function (err, accountData) {
+     if (err) {
+      req.flash("Please log in")
+      res.clearCookie("jwt")
+      return res.redirect("/account/login")
+     }
+     res.locals.accountData = accountData
+     res.locals.loggedin = 1
+     next()
+    })
+  } else {
+    res.locals.loggedin = 0
+    next()
+  }
+ }
+
+
+ /* ****************************************
+ *  Check Login
+ * ************************************ */
+ Util.checkLogin = (req, res, next) => {
+  if (res.locals.loggedin) {
+    next()
+  } else {
+    req.flash("notice", "Please log in.")
+    return res.redirect("/account/login")
+  }
+ }
+ 
 module.exports = Util

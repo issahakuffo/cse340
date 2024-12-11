@@ -97,29 +97,29 @@
       // Check if input has at least 3 characters
       function checkTextInput(input) {
         if (input.value.length >= 3) {
-          input.style.borderColor = "green";
+          input.style.borderColor = "green"
         } else if (input.value.trim() === "") {
-          input.style.borderColor = "red";
+          input.style.borderColor = "red"
         } else {
-          input.style.borderColor = "red";
+          input.style.borderColor = "red"
         }
       }
       // Check if number input contains at least one digit
       function checkNumberInput(input) {
         const value = input.value.trim();
         if (value && !isNaN(value) && value >= 1) {
-          input.style.borderColor = "green";
+          input.style.borderColor = "green"
         } else {
-          input.style.borderColor = "red";
+          input.style.borderColor = "red"
         }
       }
       // Attach listeners for real-time validation
       inputs.forEach(input => {
         if (input.type === "text" || input.type === "textarea") {
-          input.addEventListener("input", () => checkTextInput(input));
+          input.addEventListener("input", () => checkTextInput(input))
         } else if (input.type === "number") {
-          input.addEventListener("input", () => checkNumberInput(input));
+          input.addEventListener("input", () => checkNumberInput(input))
         }
-      });
-    });
+      })
+    })
 </script>

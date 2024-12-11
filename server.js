@@ -19,7 +19,8 @@ const pool = require('./database/')
 const accountRoute = require("./routes/accountRoute")
 const bodyParser = require("body-parser")
 const accountController = require("./controllers/accountController")
-
+const cookieParser = require("cookie-parser")
+const connectFlash = require("connect-flash")
 
 
 
@@ -39,6 +40,9 @@ app.use(session({
 }))
 
 
+// Express Messages Middleware (for flash messages)
+app.use(connectFlash())
+
 // Express Messages Middleware
 app.use(require('connect-flash')())
 app.use(function(req, res, next){
@@ -48,6 +52,10 @@ app.use(function(req, res, next){
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+
+app.use(cookieParser())
+
+app.use(utilities.checkJWTToken)
 
 /* ***********************
  * View Engine and Templates
@@ -65,6 +73,7 @@ app.use(static)
 //   res.render("index",{title:"Home"})
 // })
 app.get("/", utilities.handleErrors(baseController.buildHome))
+
 // Inventory routes
 app.use("/inv", require("./routes/inventoryRoute"))
 

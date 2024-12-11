@@ -1,0 +1,75 @@
+<div class="update-container">
+    <% if (title) { %>
+        <h1><%= title %></h1>
+      <% } else { %>
+        <% res.redirect('/') %>
+      <% } %>
+      
+      <div class="background"></div>
+      
+      <!-- Flash Message -->
+      <% if (flashMessage) { %>
+        <div class="flash-message alert alert-success">
+          <%= flashMessage %>
+        </div>
+      <% } %>
+      
+      <!-- Error Messages -->
+      <% if (errors && errors.length > 0) { %>
+        <ul class="notice">
+          <% errors.forEach(error => { %>
+            <li><%= error.msg %></li>
+          <% }) %>
+        </ul>
+      <% } %>
+      
+      <!-- Account Update Form -->
+      <section>
+        <h2>Account Update</h2>
+        <form action="/account/update" method="POST" class="account-update-form">
+          <div class="form-group">
+            <label for="account_firstname">First Name:</label>
+            <input type="text" id="account_firstname" name="account_firstname" value="<%= accountData.account_firstname || '' %>" required placeholder="Enter your first name" class="form-control" >
+          </div>
+      
+          <div class="form-group">
+            <label for="account_lastname">Last Name:</label>
+            <input type="text" id="account_lastname" name="account_lastname" value="<%= accountData.account_lastname || '' %>" required placeholder="Enter your last name" class="form-control" >
+          </div>
+      
+          <div class="form-group">
+            <label for="account_email">Email:</label>
+            <input type="email" id="account_email" name="account_email" value="<%= accountData.account_email || '' %>" required placeholder="Enter your email address" class="form-control" >
+          </div>
+      
+          <!-- Hidden field for account_id -->
+          <input type="hidden" name="account_id" value="<%= accountData.account_id %>">
+      
+          <button type="submit" class="btn-primary">Update Account</button>
+        </form>
+      </section>
+      
+      <!-- Change Password Form -->
+      <section>
+        <h2>Change Password</h2>
+        <p>Please enter your current password and a new password. The new password must be at least 8 characters long, contain at least 1 uppercase letter, 1 lowercase letter, and 1 number.</p>
+        <form action="/account/update-password" method="POST" class="change-password-form">
+          <!-- Current Password -->
+          <div class="form-group">
+            <label for="current_password">Current Password:</label>
+            <input type="password" id="current_password" name="current_password" required placeholder="Enter your current password" class="form-control" >
+          </div>
+      
+          <!-- New Password -->
+          <div class="form-group">
+            <label for="new_password">New Password:</label>
+            <input type="password" id="new_password" name="new_password" required minlength="8" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Password must contain at least one uppercase letter, one lowercase letter, and one number." placeholder="Enter your new password" class="form-control" >
+          </div>
+      
+          <!-- Hidden field for account_id -->
+          <input type="hidden" name="account_id" value="<%= accountData?.account_id %>">
+      
+          <button type="submit" class="btn-primary">Change Password</button>
+        </form>
+      </section> 
+</div>
