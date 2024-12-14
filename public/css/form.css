@@ -110,7 +110,8 @@ footer{
  .manage-container,
  .update-container,
  .delete-container,
- .edit-inv-container
+ .edit-inv-container,
+ .change-2
  {
     background-color: white;
     align-items: center;
@@ -118,17 +119,28 @@ footer{
     flex-direction: column;
  }
 
+ .change-2{
+    padding: 5px;
+    width: 330px;
+ }
  .add-class{
     padding: 10px;
  }
-.add-class button{
+.add-class button,
+.change-2 button,
+.update-container button
+{
     display: block;
     padding: 8px;
     border-radius: 25px;
     width: 200px;
     background-color: lightgrey;
 }
-.add-class button:hover{
+
+.add-class button:hover,
+.change-2 button:hover,
+.update-container button:hover
+{
     background-color: black;
     color: white;
 }
