@@ -6,6 +6,10 @@ background-color: #f8f8f8;
 margin-top: -20px;
 }
 
+nav a{
+background-color: black;
+color: #f8f8f8;
+}
 
 h1 {
 text-align: center;
