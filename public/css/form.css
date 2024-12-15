@@ -128,7 +128,9 @@ footer{
  }
 .add-class button,
 .change-2 button,
-.update-container button
+.update-container button,
+.delete-container button,
+.edit-inv-container button
 {
     display: block;
     padding: 8px;
@@ -139,7 +141,9 @@ footer{
 
 .add-class button:hover,
 .change-2 button:hover,
-.update-container button:hover
+.update-container button:hover,
+.delete-container button:hover,
+.edit-inv-container button:hover
 {
     background-color: black;
     color: white;
