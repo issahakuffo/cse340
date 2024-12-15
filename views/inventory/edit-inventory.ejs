@@ -5,24 +5,24 @@
     res.redirect('/');
     } %>
     
-    <div class="background"></div>
+  <div class="background"></div>
     
-    <% if (errors && errors.length > 0) { %>
-    <ul class="notice">
-      <% errors.forEach(error => { %>
-        <li><%= error.msg %></li>
-      <% }) %>
-    </ul>
+  <% if (errors && errors.length > 0) { %>
+  <ul class="notice">
+    <% errors.forEach(error => { %>
+      <li><%= error.msg %></li>
+    <% }) %>
+  </ul>
     <% } %>
     
-    <% if (flashMessage) { %>
-    <div class="flash-message">
-      <%= flashMessage %>
-    </div>
-    <% } %>
+  <% if (flashMessage) { %>
+  <div class="flash-message">
+    <%= flashMessage %>
+  </div>
+  <% } %>
     
-    <!-- Modify form action to update existing inventory item -->
-    <form action="/inv/edit/<%= inv_id %>" method="POST" class="edit-inventory-form" id="editInventoryForm">
+  <!-- Modify form action to update existing inventory item -->
+  <form action="/inv/edit/<%= inv_id %>" method="POST" class="edit-inventory-form" id="editInventoryForm">
     <div class="form-group">
       <label for="classification_id">Classification:</label>
       <select id="classification_id" name="classification_id" required>
@@ -35,55 +35,65 @@
         <% }) %>
       </select>
     </div>
-    
+  
     <div class="form-group">
       <label for="inv_make">Make:</label>
-      <input type="text" id="inv_make" name="inv_make" value="<%= inv_make || '' %>" required placeholder="Enter vehicle make" class="form-control" />
+      <input type="text" id="inv_make" name="inv_make" value="<%= inv_make || '' %>"
+       required placeholder="Enter vehicle make" class="form-control" />
     </div>
-    
+  
     <div class="form-group">
       <label for="inv_model">Model:</label>
-      <input type="text" id="inv_model" name="inv_model" value="<%= inv_model || '' %>" required placeholder="Enter vehicle model" class="form-control" />
+      <input type="text" id="inv_model" name="inv_model" value="<%= inv_model || '' %>" 
+      required placeholder="Enter vehicle model" class="form-control" />
     </div>
-    
+  
     <div class="form-group">
       <label for="inv_year">Year:</label>
-      <input type="number" id="inv_year" name="inv_year" value="<%= inv_year || '' %>" required placeholder="Enter vehicle year" class="form-control" />
+      <input type="number" id="inv_year" name="inv_year" value="<%= inv_year || '' %>" 
+      required placeholder="Enter vehicle year" class="form-control" />
     </div>
-    
+  
     <div class="form-group">
       <label for="inv_description">Description:</label>
-      <textarea id="inv_description" name="inv_description" required placeholder="Enter vehicle description" class="form-control"><%= inv_description || '' %></textarea>
+      <textarea id="inv_description" name="inv_description" required placeholder="Enter vehicle description" 
+      class="form-control"><%= inv_description || '' %></textarea>
     </div>
-    
+  
     <div class="form-group">
       <label for="inv_image">Image URL:</label>
-      <input type="text" id="inv_image" name="inv_image" value="<%= inv_image || '/images/vehicles/no-image.png' %>" required placeholder="Enter main image URL" class="form-control" />
+      <input type="text" id="inv_image" name="inv_image" value="<%= inv_image || '/images/vehicles/no-image.png' %>" 
+      required placeholder="Enter main image URL" class="form-control" />
     </div>
-    
+  
     <div class="form-group">
       <label for="inv_thumbnail">Thumbnail URL:</label>
-      <input type="text" id="inv_thumbnail" name="inv_thumbnail" value="<%= inv_thumbnail || '/images/vehicles/no-image-tn.png' %>" required placeholder="Enter thumbnail URL" class="form-control" />
+      <input type="text" id="inv_thumbnail" name="inv_thumbnail" value="<%= inv_thumbnail || '/images/vehicles/no-image-tn.png' %>" 
+      required placeholder="Enter thumbnail URL" class="form-control" />
     </div>
-    
+  
     <div class="form-group">
       <label for="inv_price">Price:</label>
-      <input type="number" id="inv_price" name="inv_price" step="0.01" value="<%= inv_price || '' %>" required placeholder="Enter vehicle price" class="form-control" />
+      <input type="number" id="inv_price" name="inv_price" step="0.01" value="<%= inv_price || '' %>" 
+      required placeholder="Enter vehicle price" class="form-control" />
     </div>
-    
+  
     <div class="form-group">
       <label for="inv_miles">Miles:</label>
-      <input type="number" id="inv_miles" name="inv_miles" value="<%= inv_miles || '' %>" required placeholder="Enter vehicle mileage" class="form-control" />
+      <input type="number" id="inv_miles" name="inv_miles" value="<%= inv_miles || '' %>" 
+      required placeholder="Enter vehicle mileage" class="form-control" />
     </div>
-    
+  
     <div class="form-group">
       <label for="inv_color">Color:</label>
-      <input type="text" id="inv_color" name="inv_color" value="<%= inv_color || '' %>" required placeholder="Enter vehicle color" class="form-control" />
+      <input type="text" id="inv_color" name="inv_color" value="<%= inv_color || '' %>" 
+      required placeholder="Enter vehicle color" class="form-control" />
     </div>
-    
+  
     <!-- Submit button reflecting an update -->
     <button type="submit" class="btn btn-primary">Update Vehicle</button>
-    </form>
+  </form>
+  
 </div>
       
 <script>
