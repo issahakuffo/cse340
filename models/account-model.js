@@ -1,9 +1,9 @@
 const pool = require("../database/")
 
 /* *****************************
- *   Register new account
+ *   Register new account    Modification WK 6
  * *************************** */
-async function registerAccount(account_firstname, account_lastname, account_email, account_password) { 
+async function registerAccount(account_firstname, account_lastname, account_email, account_password, account_type) { 
   try {
        const emailExists = await checkExistingEmail(account_email);
     if (emailExists) {
@@ -12,9 +12,9 @@ async function registerAccount(account_firstname, account_lastname, account_emai
 
       const sql = `
       INSERT INTO account (account_firstname, account_lastname, account_email, account_password, account_type) 
-      VALUES ($1, $2, $3, $4, 'Client') 
+      VALUES ($1, $2, $3, $4, $5) 
       RETURNING *`;
-    const result = await pool.query(sql, [account_firstname, account_lastname, account_email, account_password]);
+    const result = await pool.query(sql, [account_firstname, account_lastname, account_email, account_password,account_type]);
 
         return result.rows[0];
   } catch (error) {

@@ -34,11 +34,12 @@ app.use(session({
     pool,
   }),
   secret: process.env.SESSION_SECRET,
-  resave: true,
+  resave: false,
   saveUninitialized: true,
-  name: 'sessionId',
+  cookie: { secure: process.env.NODE_ENV === 'production' },
+  name: 'sessionId'
+  
 }))
-
 
 // Express Messages Middleware (for flash messages)
 app.use(connectFlash())

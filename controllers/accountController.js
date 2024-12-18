@@ -13,7 +13,7 @@ async function buildLogin(req, res, next) {
     let nav = await utilities.getNav()
     if (req.session.loggedIn) {
       req.flash("notice", "You have successfully logged in!.")
-      return res.redirect("/dashboard")
+      return res.redirect("/account")
     }
     res.render("account/login", {
       title: "Login",
@@ -27,6 +27,18 @@ async function buildLogin(req, res, next) {
 async function buildRegister(req, res, next) {
   let nav = await utilities.getNav()
   res.render("account/register", {
+    title: "Register",
+    nav,
+    errors: null,
+  })
+}
+
+  /* ****************************************
+*  Deliver registration-admin view  WK 6
+* *************************************** */
+async function buildRegisterAdmin(req, res, next) {
+  let nav = await utilities.getNav()
+  res.render("account/register-admin", {
     title: "Register",
     nav,
     errors: null,
@@ -59,9 +71,16 @@ async function buildAccountManagement(req, res, next) {
 * *************************************** */
 async function registerAccount(req, res) {
   let nav = await utilities.getNav();
-  const { account_firstname, account_lastname, account_email, account_password } = req.body;
+  
+  // Destructure the incoming request body to get the necessary fields
+  let { account_firstname, account_lastname, account_email, account_password, account_type } = req.body;
+  
+  // If account_type is not provided, default it to 'Client'
+  if (!account_type) {
+    account_type = 'Client';  // Default account_type
+  }
 
-
+  // Check if the email already exists
   const emailExists = await accountModel.checkExistingEmail(account_email);
   if (emailExists) {
     req.flash("notice", "Sorry, that email is already in use. Please choose a different one.");
@@ -72,7 +91,7 @@ async function registerAccount(req, res) {
     });
   }
 
-
+  // Hash the password
   let hashedPassword;
   try {
     hashedPassword = await bcrypt.hash(account_password, 10);
@@ -85,15 +104,16 @@ async function registerAccount(req, res) {
     });
   }
 
-
+  // Register the account
   const regResult = await accountModel.registerAccount(
     account_firstname,
     account_lastname,
     account_email,
-    hashedPassword // Use the hashed password here
+    hashedPassword,  // Use the hashed password here
+    account_type     // Pass account_type to register the user's type
   );
 
-
+  // Handle the registration result
   if (regResult) {
     req.flash(
       "notice",
@@ -111,6 +131,8 @@ async function registerAccount(req, res) {
     });
   }
 }
+
+
 
 
 /* ****************************************
@@ -273,42 +295,60 @@ async function updatePassword(req, res, next) {
 /* ****************************************
  *  Process login request
  * ************************************ */
-async function accountLogin(req, res) { 
+async function accountLogin(req, res) {
   let nav = await utilities.getNav();
   const { account_email, account_password } = req.body;
 
-  const accountData = await accountModel.getAccountByEmail(account_email);
-
-  if (!accountData) {
-    req.flash("notice", "Please check your credentials and try again. Email Error");
-    return res.status(401).render("account/login", {
-      title: "Login",
-      nav,
-      errors: null,
-      account_email,
-    });
-  }
-
   try {
+    // Fetch user data by email
+    const accountData = await accountModel.getAccountByEmail(account_email);
 
+    // Check if account data exists
+    if (!accountData) {
+      req.flash("notice", "Please check your credentials and try again. Email Error");
+      return res.status(401).render("account/login", {
+        title: "Login",
+        nav,
+        errors: null,
+        account_email,
+      });
+    }
+
+    // Compare the provided password with the stored hashed password
     const passwordMatch = await bcrypt.compare(account_password, accountData.account_password);
 
-
     if (passwordMatch) {
-      delete accountData.account_password; // Remove password from account data
+      // Remove password from the account data before creating a token
+      delete accountData.account_password; 
+
+      // Generate JWT token
       const accessToken = jwt.sign(accountData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 });
 
-   
+      // Set cookie options
+      const cookieOptions = {
+        httpOnly: true, 
+        maxAge: 3600 * 1000, // 1 hour
+        sameSite: 'Lax', // SameSite to prevent CSRF
+      };
+
+      // Set secure cookie in production environment
       if (process.env.NODE_ENV === 'development') {
-        res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000 });
+        res.cookie("jwt", accessToken, cookieOptions);
       } else {
-        res.cookie("jwt", accessToken, { httpOnly: true, secure: true, maxAge: 3600 * 1000 });
+        res.cookie("jwt", accessToken, { ...cookieOptions, secure: true }); // Secure cookies in production
       }
 
-      
-      return res.redirect("/account/");
+      // Set session variables for tracking login state
+      req.session.loggedIn = true;
+      req.session.user = accountData;
+
+      // Redirect to the appropriate page after login
+      const redirectUrl = req.session.redirectTo || '/account/';
+      res.redirect(redirectUrl);
+
+      // Optionally clear the redirect URL after redirect
+      delete req.session.redirectTo;
     } else {
-     
       req.flash("notice", "Please check your credentials and try again. Password Error");
       return res.status(401).render("account/login", {
         title: "Login",
@@ -329,6 +369,24 @@ async function accountLogin(req, res) {
     });
   }
 }
+async function accountLogout(req, res) {
+  // Clear the session data
+  req.session.destroy((err) => {
+    if (err) {
+      return res.status(500).json({ message: "Failed to destroy session" });
+    }
+
+    // Clear the JWT cookie
+    res.clearCookie("jwt", { httpOnly: true, sameSite: 'Lax', secure: process.env.NODE_ENV !== 'development' });
+
+    // Optionally, flash a message for the user
+    req.flash("notice", "You have logged out successfully.");
+
+    // Redirect to the login page or home page
+    return res.redirect("/account/login");  // Or redirect to '/' for the home page
+  });
+}
+
 
 
 
@@ -338,8 +396,10 @@ async function accountLogin(req, res) {
     buildRegister, 
     registerAccount, 
     accountLogin,
+    accountLogout,    
     buildAccountManagement,
     updatePassword,
     buildUpdate,
-    updateAccount
+    updateAccount,
+    buildRegisterAdmin
   }

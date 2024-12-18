@@ -29,6 +29,14 @@
     box-shadow: 1px 1px 6px #6b6a6a;
 }
 
+#account_type{
+    padding: 3px;
+}
+
+.admin-option{
+    margin: 6px;
+}
+
 label{
     display: block;
     padding: 3px;

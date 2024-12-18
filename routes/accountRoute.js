@@ -35,10 +35,28 @@ router.get(
 )
 
 /*********************
+ * Deliver Registration View (WK 6)
+ *********************/
+router.get(
+  "/register-admin",
+  utilities.handleErrors(accountController.buildRegisterAdmin)
+)
+
+/*********************
  * Handle Registration Form Submission
  *********************/
 router.post(
   "/register",
+  regValidate.registationRules(), // Validation rules middleware
+  regValidate.checkRegData,       // Check validation results
+  utilities.handleErrors(accountController.registerAccount) // Handle registration
+)
+
+/*********************
+ * Handle Registration Form Submission (WK 6)
+ *********************/
+router.post(
+  "/register-admin",
   regValidate.registationRules(), // Validation rules middleware
   regValidate.checkRegData,       // Check validation results
   utilities.handleErrors(accountController.registerAccount) // Handle registration
@@ -50,6 +68,12 @@ router.post(
   regValidate.loginRules(), 
   regValidate.checkLoginData, 
   utilities.handleErrors(accountController.accountLogin)
+)
+
+//(WK 6)
+router.post(   
+  "/logout",
+  utilities.handleErrors(accountController.accountLogout)
 )
 
 /* ***************************
