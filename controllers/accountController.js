@@ -9,7 +9,7 @@ require("dotenv").config()
 /* ****************************************
 *  Deliver login view
 * *************************************** */
-/* async function buildLogin(req, res, next) {
+async function buildLogin(req, res, next) {
     let nav = await utilities.getNav()
     if (req.session.loggedIn) {
       req.flash("notice", "You have successfully logged in!.")
@@ -19,7 +19,7 @@ require("dotenv").config()
       title: "Login",
       nav,
     })
-  } */
+  }
 
   /* ****************************************
 *  Deliver registration view
