@@ -45,7 +45,7 @@ async function buildLogout(req, res, next) {
 
         // Optionally render a logout confirmation page or redirect directly
         // Render the logout confirmation page
-        res.render("/", {
+        res.render("/acount/login", {
         title: "Logout",
         nav,
         loggedIn: req.session.loggedIn || false,
@@ -413,34 +413,19 @@ async function accountLogin(req, res) {
 async function accountLogout(req, res) {
   console.log("accountLogout was called!")
 
+  let nav = await utilities.getNav();
   // Clear the session data
   req.session.destroy((err) => {
     if (err) {
       return res.status(500).json({ message: "Failed to destroy session" });
     }
-
-    req.session.loggedIn = false;
-    req.session.user = null;
     res.clearCookie("sessionId"); // Clear the session cookie
-
-    console.log(res.accessToken.jwt)
 
     // Clear the JWT cookie
     res.clearCookie("jwt", { httpOnly: true, sameSite: 'Lax', secure: process.env.NODE_ENV !== 'development' });
 
-    // Optionally, flash a message for the user
-    req.flash("notice", "You have logged out successfully.");
-
-
-
     // Redirect to the login page or home page
-    return res.status(200).render("/", {
-        title: "Dashboard",
-        nav,
-        errors: null,
-        account_email,
-        loggedIn : req.session.loggedIn || false
-      });
+    return res.redirect("/account/login");
   });
 }
 

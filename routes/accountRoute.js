@@ -71,7 +71,7 @@ router.post(
 )
 
 //(WK 6)
-router.post(   
+router.get(   
   "/logout",
   utilities.handleErrors(accountController.accountLogout)
 )
@@ -83,7 +83,7 @@ router.post(
 // Route to account update page
 router.get(
   "/update/:account_id",
-  utilities.logout,  // Ensure the user is logged in
+  utilities.checkLogin,  // Ensure the user is logged in
   utilities.handleErrors(accountController.buildUpdate)
 )
 

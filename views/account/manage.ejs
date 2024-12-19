@@ -41,7 +41,15 @@
             <a href="/inv" class="btn-primary">Manage Inventory</a>
           </p>
         <% } %>
+        <% if (accountData.account_type === "Admin") { %>
+          <h3>Register Admin or Employee Account</h3>
+          <p>
+            <a href="/register-admin" class="btn-primary">Register an admin / Employee Account</a>
+          </p>
+        <% } %>
       <% } else { %>
         <p>You must be logged in to view this page.</p>
       <% } %>
+
+
 </div>
