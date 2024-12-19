@@ -10,6 +10,7 @@ require("dotenv").config()
 *  Deliver login view
 * *************************************** */
 async function buildLogin(req, res, next) {
+    console.log("buildLogin")
     let nav = await utilities.getNav()
     if (req.session.loggedIn) {
       req.flash("notice", "You have successfully logged in!.")
@@ -18,8 +19,43 @@ async function buildLogin(req, res, next) {
     res.render("account/login", {
       title: "Login",
       nav,
+      loggedIn: req.session.loggedIn || false,
     })
   }
+
+  /* ****************************************
+*  Deliver logout 
+* *************************************** */
+async function buildLogout(req, res, next) { 
+    console.log("buildLogout")
+    let nav = await utilities.getNav();
+
+    // Destroy the session
+    req.session.destroy((err) => {
+        if (err) {
+        // Handle session destruction error
+        return res.status(500).send("Failed to log out.");
+        }
+
+        // Clear the JWT cookie if it exists
+        res.clearCookie("jwt");
+
+        req.session.loggedIn = false;
+        req.session.user = null;        
+
+        // Optionally render a logout confirmation page or redirect directly
+        // Render the logout confirmation page
+        res.render("/", {
+        title: "Logout",
+        nav,
+        loggedIn: req.session.loggedIn || false,
+        message: "You have been logged out successfully.",
+        });
+
+      
+    });
+}
+  
 
   /* ****************************************
 *  Deliver registration view
@@ -296,6 +332,8 @@ async function updatePassword(req, res, next) {
  *  Process login request
  * ************************************ */
 async function accountLogin(req, res) {
+  console.log("accountLogin!")
+
   let nav = await utilities.getNav();
   const { account_email, account_password } = req.body;
 
@@ -355,6 +393,7 @@ async function accountLogin(req, res) {
         nav,
         errors: null,
         account_email,
+        loggedIn : req.session.loggedIn || false
       });
     }
   } catch (error) {
@@ -369,12 +408,22 @@ async function accountLogin(req, res) {
     });
   }
 }
+
+
 async function accountLogout(req, res) {
+  console.log("accountLogout was called!")
+
   // Clear the session data
   req.session.destroy((err) => {
     if (err) {
       return res.status(500).json({ message: "Failed to destroy session" });
     }
+
+    req.session.loggedIn = false;
+    req.session.user = null;
+    res.clearCookie("sessionId"); // Clear the session cookie
+
+    console.log(res.accessToken.jwt)
 
     // Clear the JWT cookie
     res.clearCookie("jwt", { httpOnly: true, sameSite: 'Lax', secure: process.env.NODE_ENV !== 'development' });
@@ -382,8 +431,16 @@ async function accountLogout(req, res) {
     // Optionally, flash a message for the user
     req.flash("notice", "You have logged out successfully.");
 
+
+
     // Redirect to the login page or home page
-    return res.redirect("/account/login");  // Or redirect to '/' for the home page
+    return res.status(200).render("/", {
+        title: "Dashboard",
+        nav,
+        errors: null,
+        account_email,
+        loggedIn : req.session.loggedIn || false
+      });
   });
 }
 
@@ -393,6 +450,7 @@ async function accountLogout(req, res) {
 
   module.exports = { 
     buildLogin,
+    buildLogout,
     buildRegister, 
     registerAccount, 
     accountLogin,

@@ -83,7 +83,7 @@ router.post(
 // Route to account update page
 router.get(
   "/update/:account_id",
-  utilities.checkLogin,  // Ensure the user is logged in
+  utilities.logout,  // Ensure the user is logged in
   utilities.handleErrors(accountController.buildUpdate)
 )
 

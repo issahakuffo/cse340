@@ -157,5 +157,18 @@ Util.checkJWTToken = (req, res, next) => {
     return res.redirect("/account/login")
   }
  }
+
  
+ /* ****************************************
+ *  Check Logout
+ * ************************************ */
+ Util.logout = (req, res, next) => {
+  if (res.locals.loggedin) {
+    res.locals.loggedin = false
+    next()
+  } else {
+    req.flash("notice", "logged out.")
+    return res.redirect("/")
+  }
+ }
 module.exports = Util
