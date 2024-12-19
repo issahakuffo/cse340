@@ -71,7 +71,7 @@ router.post(
 )
 
 //(WK 6)
-router.post(   
+router.get(   
   "/logout",
   utilities.handleErrors(accountController.accountLogout)
 )

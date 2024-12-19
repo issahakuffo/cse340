@@ -48,6 +48,7 @@ app.use(connectFlash())
 app.use(require('connect-flash')())
 app.use(function(req, res, next){
   res.locals.messages = require('express-messages')(req, res)
+  res.locals.loggedIn = req.session.loggedIn || false
   next()
 })
 
@@ -116,6 +117,7 @@ app.use(async (err, req, res, next) => {
     title: err.status || "Server Error",
     message,
     nav,
+    loggedIn: req.session.loggedIn || false
   })
 })
 
