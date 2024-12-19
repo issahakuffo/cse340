@@ -10,7 +10,7 @@ async function registerAccount(account_firstname, account_lastname, account_emai
       throw new Error("Email is already in use. Please choose a different one.");
     }
 
-      const sql = `
+    const sql = `
       INSERT INTO account (account_firstname, account_lastname, account_email, account_password, account_type) 
       VALUES ($1, $2, $3, $4, $5) 
       RETURNING *`;
